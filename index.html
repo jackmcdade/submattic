@@ -48,13 +48,61 @@
 </li>
 <li>Add and edit your groups in /groups/.yaml</li>
 <li>Deploy to <a href="http://heroku.com">Heroku</a>, <a href="http://nodejitsu.com">Nodejitsu</a>, or your Node hosting service of choice.</li>
-<li>Point Mandrill's Inbound Email (*) wildcard domain route to the public root URL (e.g. <a href="http://example-url.com">http://example-url.com</a>).</li>
+<li>Point Mandrill's Inbound Email (*) wildcard domain route to the public root URL (e.g. <a href="http://example-url.com">http://example-url.com</a>). You can choose to specially add each mailbox route explicity to avoid having exceess email (read: SPAM) hit your server unnecessarily. <img src="http://f.cl.ly/items/1k3z3L2r0m3C091J0J0I/mandrill-screenshot.png" alt="Mandrill Settings">
+</li>
 <li>Edit the config.yaml file and add your Mandrill API Key.</li>
 </ol><h2>Usage</h2>
 
-<p>Create a group by adding a YAML file to the /groups folder. A file named "gamenight.yaml" would create the email list "<a href="mailto:gamenight@example.com">gamenight@example.com</a>". The file should contain a title (used in the subject lines) and a list of name/email keys for all the memebers. An example file is in place for you to follow.</p>
+<p>Create a group by adding a YAML file to the /groups folder. A file named <code>gamenight.yaml</code> would create the email list <code>gamenight@example.com</code>. The file should contain a title (used in the subject lines) and a list of name/email keys for all the memebers. Here's an example of a group file:</p>
 
-<p>Only emails from people within the group will be accepted and routed to the rest of the members. Full HTML/text content will be passed along but attachements are not yet supported. This means animated gifs of kittens and painful injuries just need to be dropped in from a website instead of attached from your local computer. I know this is why you want to use the app in the first place.</p>
+<div class="highlight"><pre><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Example</span>
+<span class="l-Scalar-Plain">members</span><span class="p-Indicator">:</span>
+  <span class="p-Indicator">-</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Peter Pevensie</span>
+    <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">peter@example.com</span>
+  <span class="p-Indicator">-</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Susan Pevensie</span>
+    <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">susan@example.com</span>
+  <span class="p-Indicator">-</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Edmund Pevensie</span>
+    <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">edmund@example.com</span>
+  <span class="p-Indicator">-</span>
+    <span class="l-Scalar-Plain">name</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">Lucy Pevensie</span>
+    <span class="l-Scalar-Plain">email</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">lucy@example.com</span>
+</pre></div>
+
+<p>Only emails from people <strong>within the group</strong> (this is white-listing) will be accepted and routed to the rest of the members. Full HTML/text content will be passed along.</p>
+
+<h2>Quick Start guides to hosting Submattic</h2>
+
+<p>We'll assume you have Submattic running locally already.</p>
+
+<h3>Running on <a href="http://heroku">Heroku</a>
+</h3>
+
+<ol>
+<li><a href="https://api.heroku.com/signup/devcenter">Create a Heroku account</a></li>
+<li>Install the Heroku gem: <code>gem install heroku</code> or install the <a href="https://toolbelt.heroku.com/">Heroku Toolbelt</a>
+</li>
+<li>Login <code>heroku login</code> and authenticate with your account info</li>
+<li>Create the app: <code>heroku create</code>
+</li>
+<li>Deploy: <code>git push heroku master</code>
+</li>
+<li>Turn a dyno on to make sure the app is running: <code>heroku ps:scale web=1</code>
+</li>
+<li>Visit the app to make sure Submattic is running: <code>heroku open</code>.</li>
+</ol><h3>Running on <a href="http://nodejitsu.com">Nodejitsu</a>
+</h3>
+
+<ol>
+<li><a href="https://www.nodejitsu.com/signup">Create a Nodejitsu account</a></li>
+<li>Install <code>jitsu</code>, the command line interface for Nodejitsu's platform: <code>npm install jitsu -g</code>
+</li>
+<li>Login <code>jitsu login</code> and authenticate with your account info</li>
+<li>Deploy: <code>jitsu deploy</code>. Nodejitsu will ask you for some additional info, like your app's name, subdomain, and start script. The start script is <code>app.js</code>.</li>
+<li>Visit <code>&lt;yourapp&gt;.nodejitsu.com</code> to make sure everything's running.</li>
+</ol>
         </section>
 
         <aside id="sidebar">
