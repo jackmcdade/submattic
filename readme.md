@@ -25,6 +25,8 @@ Only emails from people within the group will be accepted and routed to the rest
 
 ## Todo
 - Attachments
+- Optional database (alternative to YAML files)
+- Simple GUI to avoid the need to redeploy on group updates
 - Hash commands (e.g. #unsubscribe bob@example.com)
   - Subscribe
   - Unsubscribe
