@@ -26,12 +26,12 @@ Only emails from people within the group will be accepted and routed to the rest
 ## Todo
 - Attachments
 - Hash commands (e.g. #unsubscribe bob@example.com)
--- Subscribe
--- Unsubscribe
--- Request a full list
--- Logs
--- Schedule Email
--- Use template
--- List Help (show controls and some instructions)
+- Subscribe
+  - Unsubscribe
+  - Request a full list
+  - Logs
+  - Schedule Email
+  - Use template
+  - List Help (show controls and some instructions)
 - Send a message back if the group is invalid (maybe)
 - Notifications of unsubscribes, bounces, etc
