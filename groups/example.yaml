@@ -1,0 +1,14 @@
+title: Example
+members:
+  -
+    name: Peter Pevensie
+    email: peter@example.com
+  -
+    name: Susan Pevensie
+    email: susan@example.com
+  -
+    name: Edmund Pevensie
+    email: edmund@example.com
+  -
+    name: Lucy Pevensie
+    email: lucy@example.com
