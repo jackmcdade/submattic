@@ -26,7 +26,7 @@ Only emails from people within the group will be accepted and routed to the rest
 ## Todo
 - Attachments
 - Hash commands (e.g. #unsubscribe bob@example.com)
-- Subscribe
+  - Subscribe
   - Unsubscribe
   - Request a full list
   - Logs
