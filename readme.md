@@ -1,7 +1,7 @@
 Submattic
 =========
 
-* Crazy simple, Node.js powered, whitelist-only email groups. For humans!*
+*Crazy simple, Node.js powered, whitelist-only email groups. For humans!*
 
 ## Requirements
 
@@ -22,18 +22,3 @@ Submattic
 Create a group by adding a YAML file to the /groups folder. A file named "gamenight.yaml" would create the email list "gamenight@example.com". The file should contain a title (used in the subject lines) and a list of name/email keys for all the memebers. An example file is in place for you to follow.
 
 Only emails from people within the group will be accepted and routed to the rest of the members. Full HTML/text content will be passed along but attachements are not yet supported. This means animated gifs of kittens and painful injuries just need to be dropped in from a website instead of attached from your local computer. I know this is why you want to use the app in the first place.
-
-## Todo
-- Attachments
-- Optional database (alternative to YAML files)
-- Simple GUI to avoid the need to redeploy on group updates
-- Hash commands (e.g. #unsubscribe bob@example.com)
-  - Subscribe
-  - Unsubscribe
-  - Request a full list
-  - Logs
-  - Schedule Email
-  - Use template
-  - List Help (show controls and some instructions)
-- Send a message back if the group is invalid (maybe)
-- Notifications of unsubscribes, bounces, etc
