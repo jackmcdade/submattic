@@ -11,7 +11,8 @@ function stripDomain(email) {
 	return address[0];
 }
 
-exports.send = function(to, from, subject, text) {
+
+function send(to, from, subject, text) {
   mandrill('/messages/send', {
     message: {
       to: to,
@@ -22,15 +23,19 @@ exports.send = function(to, from, subject, text) {
   });
 }
 
+
 function cleanSubjectLine(subject, group_title) {
+  var is_reply = _s.include(subject, "Re:");
 
-  // @Todo Replace with RegEx
-  strip_group_title = subject.replace("[" + group_title + "]", "");
-  strip_replies = strip_group_title.replace("Re:", "");
-  strip_whitespace = _s.clean(strip_replies);
+  if (is_reply) {
+    repeat_pattern = "Re: [" + group_title + "]";
 
-  return "[" + group_title + "] " + strip_whitespace;;
+    return subject.replace(repeat_pattern + " " + repeat_pattern, repeat_pattern);
+  }
+
+  return "[" + group_title + "] " + subject;
 }
+
 
 exports.parse = function(msg) {
 
