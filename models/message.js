@@ -1,10 +1,11 @@
 var fs = require('fs')
   , _ = require('underscore')
+  , _s = require('underscore.string')
   , yaml = require('js-yaml')
   , config = require(__dirname + '/../config.yaml')
   , mandrill = require('node-mandrill')(config.mandrill_api_key);
 
-exports.stripDomain = function (email) {
+function stripDomain(email) {
 	address = email.split('@');
 
 	return address[0];
@@ -21,9 +22,19 @@ exports.send = function(to, from, subject, text) {
   });
 }
 
+function cleanSubjectLine(subject, group_title) {
+
+  // @Todo Replace with RegEx
+  strip_group_title = subject.replace("[" + group_title + "]", "");
+  strip_replies = strip_group_title.replace("Re:", "");
+  strip_whitespace = _s.clean(strip_replies);
+
+  return "[" + group_title + "] " + strip_whitespace;;
+}
+
 exports.parse = function(msg) {
 
-  var group_file = __dirname + '/../groups/' + this.stripDomain(msg.email) + '.yaml';
+  var group_file = __dirname + '/../groups/' + stripDomain(msg.email) + '.yaml';
 
   fs.exists(group_file, function (exists) {
     if (exists) {
@@ -44,7 +55,7 @@ exports.parse = function(msg) {
             to: recipients,
             from_email: msg.email,
             from_name: msg.from_name,
-            subject: '[' + group.title + '] ' + msg.subject, // A decent place for customization
+            subject: cleanSubjectLine(msg.subject, group.title), // A decent place for customization
             text: msg.text,
             html: msg.html
           }
